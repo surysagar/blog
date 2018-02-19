@@ -1,7 +1,7 @@
 var config = {};
 
 config.blogName = 'myBlog';
-config.url = 'http://localhost/';
+config.url = 'http://localhost:3001/';
 
 config.rss = {
   title:        'My RSS Feed',

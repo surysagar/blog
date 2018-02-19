@@ -5,20 +5,37 @@ var bodyParser = require('body-parser'); //bodyparser + json + urlencoder
 var morgan  = require('morgan'); // logger
 var tokenManager = require('./config/token_manager');
 var secret = require('./config/secret');
+var path = require('path');
+
+var client = redis.createClient();
+
+client.on('connect', function() {
+	console.log('connected to redis');
+})
 
 app.listen(3001);
-app.use(bodyParser());
+
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended:false}));
 app.use(morgan());
 
+app.use(express.static(path.join(__dirname, '../app')));
+app.get('*', function(req, res){
+	res.sendfile('index.html', {root: path.join(__dirname, '../app')})
+});
+
+app.use(cors());
+app.disable('etag');
 //Routes
 var routes = {};
+
 routes.posts = require('./route/posts.js');
 routes.users = require('./route/users.js');
 routes.rss = require('./route/rss.js');
 
 
 app.all('*', function(req, res, next) {
-  res.set('Access-Control-Allow-Origin', 'http://localhost');
+  res.set('Access-Control-Allow-Origin', 'http://localhost:3001');
   res.set('Access-Control-Allow-Credentials', true);
   res.set('Access-Control-Allow-Methods', 'GET, POST, DELETE, PUT');
   res.set('Access-Control-Allow-Headers', 'X-Requested-With, Content-Type, Authorization');
