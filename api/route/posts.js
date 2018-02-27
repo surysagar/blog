@@ -22,10 +22,7 @@ exports.list = function(req, res) {
 };
 
 exports.listAll = function(req, res) {
-	if (!req.user) {
-		return res.send(401);
-	}
-
+	
 	var query = db.postModel.find();
 	query.sort('-created');
 	query.exec(function(err, results) {
@@ -101,10 +98,7 @@ exports.unlike = function(req, res) {
 }
 
 exports.create = function(req, res) {
-	if (!req.user) {
-		return res.send(401);
-	}
-
+	
 	var post = req.body.post;
 	if (post == null || post.title == null || post.content == null 
 		|| post.tags == null) {
@@ -202,8 +196,8 @@ exports.listByTag = function(req, res) {
 	if (tagName == '') {
 		return res.send(400);
 	}
-
-	var query = db.postModel.find({tags: tagName, is_published: true});
+	// removed  is_published: true
+	var query = db.postModel.find({tags: tagName});
 	query.select(publicFields);
 	query.sort('-created');
 	query.exec(function(err, results) {

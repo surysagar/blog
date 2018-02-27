@@ -6,6 +6,16 @@ html body {
   font-family: 'Varela Round', sans-serif;
   background: #F2F2F2;
   font-size: 1.3em;
+  background-image: url(../../img/bg.jpg), url(../../img/main-bg.jpg);
+      background-position: 0 -200px, left top;
+      background-repeat: no-repeat, repeat;
+      background-size: cover;
+
+}
+.main-container {
+    background: #ffffff;
+    opacity: 0.9;
+    margin-top: 200px;
 }
 a,
 a:focus,

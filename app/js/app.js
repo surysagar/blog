@@ -31,10 +31,9 @@ app.config(['$locationProvider', '$routeProvider',
             controller: 'AdminPostListCtrl',
             access: { requiredAuthentication: true }
         }).
-        when('/admin/post/create', {
+        when('/user/post/create', {
             templateUrl: 'partials/admin.post.create.html',
-            controller: 'AdminPostCreateCtrl',
-            access: { requiredAuthentication: true }
+            controller: 'AdminPostCreateCtrl'
         }).
         when('/admin/post/edit/:id', {
             templateUrl: 'partials/admin.post.edit.html',

@@ -6,7 +6,8 @@ var morgan  = require('morgan'); // logger
 var tokenManager = require('./config/token_manager');
 var secret = require('./config/secret');
 var path = require('path');
-
+var cors = require('cors');
+var redis = require('redis');
 var client = redis.createClient();
 
 client.on('connect', function() {
@@ -18,13 +19,10 @@ app.listen(3001);
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:false}));
 app.use(morgan());
+app.use(cors());
 
 app.use(express.static(path.join(__dirname, '../app')));
-app.get('*', function(req, res){
-	res.sendfile('index.html', {root: path.join(__dirname, '../app')})
-});
-
-app.use(cors());
+//app.use(cors());
 app.disable('etag');
 //Routes
 var routes = {};
@@ -47,7 +45,7 @@ app.all('*', function(req, res, next) {
 app.get('/post', routes.posts.list);
 
 //Get all posts
-app.get('/post/all', jwt({secret: secret.secretToken}), tokenManager.verifyToken, routes.posts.listAll);
+app.get('/post/all', routes.posts.listAll);
 
 //Get the post id
 app.get('/post/:id', routes.posts.read); 
@@ -71,7 +69,7 @@ app.post('/user/signin', routes.users.signin);
 app.get('/user/logout', jwt({secret: secret.secretToken}), routes.users.logout); 
 
 //Create a new post
-app.post('/post', jwt({secret: secret.secretToken}), tokenManager.verifyToken , routes.posts.create); 
+app.post('/post', routes.posts.create); 
 
 //Edit the post id
 app.put('/post', jwt({secret: secret.secretToken}), tokenManager.verifyToken, routes.posts.update); 

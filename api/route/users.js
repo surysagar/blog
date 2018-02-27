@@ -18,7 +18,7 @@ exports.signin = function(req, res) {
 			return res.send(401);
 		}
 
-		if (user == undefined) {
+		if (!user) {
 			return res.send(401);
 		}
 		

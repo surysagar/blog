@@ -113,7 +113,9 @@ appControllers.controller('AdminPostListCtrl', ['$scope', 'PostService',
 
 appControllers.controller('AdminPostCreateCtrl', ['$scope', '$location', 'PostService',
     function AdminPostCreateCtrl($scope, $location, PostService) {
-        $('#textareaContent').wysihtml5({"font-styles": false});
+        $('#textareaContent').wysihtml5({"font-styles": false,
+                                            "image": true,
+                                             "html": false});
 
         $scope.save = function save(post, shouldPublish) {
             if (post != undefined 
@@ -131,7 +133,7 @@ appControllers.controller('AdminPostCreateCtrl', ['$scope', '$location', 'PostSe
                     }
 
                     PostService.create(post).success(function(data) {
-                        $location.path("/admin");
+                        $location.path("/");
                     }).error(function(status, data) {
                         console.log(status);
                         console.log(data);
