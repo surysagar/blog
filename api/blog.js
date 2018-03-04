@@ -14,7 +14,7 @@ var client = redis.createClient();
 //	console.log('connected to redis');
 //})
 
-app.listen(3001);
+app.listen(3000);
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:false}));
@@ -80,4 +80,4 @@ app.delete('/post/:id', jwt({secret: secret.secretToken}), tokenManager.verifyTo
 //Serve the rss feed
 app.get('/rss', routes.rss.index);
 
-console.log('Blog API is starting on port 3001');
+console.log('Blog API is starting on port 3000');
