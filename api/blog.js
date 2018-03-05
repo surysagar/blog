@@ -33,7 +33,7 @@ routes.rss = require('./route/rss.js');
 
 
 app.all('*', function(req, res, next) {
-  res.set('Access-Control-Allow-Origin', 'http://localhost:3000');
+  res.set('Access-Control-Allow-Origin', 'http://ec2-18-222-72-106.us-east-2.compute.amazonaws.com');
   res.set('Access-Control-Allow-Credentials', true);
   res.set('Access-Control-Allow-Methods', 'GET, POST, DELETE, PUT');
   res.set('Access-Control-Allow-Headers', 'X-Requested-With, Content-Type, Authorization');
