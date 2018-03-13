@@ -8,7 +8,7 @@ var appDirectives = angular.module('appDirectives', []);
 
 var options = {};
 options.api = {};
-options.api.base_url = "localhost:3000";
+
 
 
 app.config(['$locationProvider', '$routeProvider', 
@@ -398,43 +398,43 @@ appServices.factory('TokenInterceptor', function ($q, $window, $location, Authen
 appServices.factory('PostService', function($http) {
     return {
         findAllPublished: function() {
-            return $http.get(options.api.base_url + '/post');
+            return $http.get('/post');
         },
 
         findByTag: function(tag) {
-            return $http.get(options.api.base_url + '/tag/' + tag);
+            return $http.get('/tag/' + tag);
         },
 
         read: function(id) {
-            return $http.get(options.api.base_url + '/post/' + id);
+            return $http.get('/post/' + id);
         },
         
         findAll: function() {
-            return $http.get(options.api.base_url + '/post/all');
+            return $http.get('/post/all');
         },
 
         changePublishState: function(id, newPublishState) {
-            return $http.put(options.api.base_url + '/post', {'post': {_id: id, is_published: newPublishState}});
+            return $http.put('/post', {'post': {_id: id, is_published: newPublishState}});
         },
 
         delete: function(id) {
-            return $http.delete(options.api.base_url + '/post/' + id);
+            return $http.delete('/post/' + id);
         },
 
         create: function(post) {
-            return $http.post(options.api.base_url + '/post', {'post': post});
+            return $http.post('/post', {'post': post});
         },
 
         update: function(post) {
-            return $http.put(options.api.base_url + '/post', {'post': post});
+            return $http.put('/post', {'post': post});
         },
 
         like: function(id) {
-            return $http.post(options.api.base_url  + '/post/like', {'id': id});
+            return $http.post('/post/like', {'id': id});
         },
 
         unlike: function(id) {
-            return $http.post(options.api.base_url  + '/post/unlike', {'id': id}); 
+            return $http.post('/post/unlike', {'id': id}); 
         }
     };
 });
@@ -442,15 +442,15 @@ appServices.factory('PostService', function($http) {
 appServices.factory('UserService', function ($http) {
     return {
         signIn: function(username, password) {
-            return $http.post(options.api.base_url + '/user/signin', {username: username, password: password});
+            return $http.post('/user/signin', {username: username, password: password});
         },
 
         logOut: function() {
-            return $http.get(options.api.base_url + '/user/logout');
+            return $http.get('/user/logout');
         },
 
         register: function(username, password, passwordConfirmation) {
-            return $http.post(options.api.base_url + '/user/register', {username: username, password: password, passwordConfirmation: passwordConfirmation });
+            return $http.post('/user/register', {username: username, password: password, passwordConfirmation: passwordConfirmation });
         }
     }
 });

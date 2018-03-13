@@ -13,8 +13,8 @@ var cors = require('cors');
 // client.on('connect', function() {
 //	console.log('connected to redis');
 //})
-
-app.listen(3000);
+var port = process.env.PORT || 3000;
+app.listen(port);
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:false}));
@@ -33,7 +33,7 @@ routes.rss = require('.api/route/rss.js');
 
 
 app.all('*', function(req, res, next) {
-  res.set('Access-Control-Allow-Origin', 'localhost:3000');
+  res.set('Access-Control-Allow-Origin', '*');
   res.set('Access-Control-Allow-Credentials', true);
   res.set('Access-Control-Allow-Methods', 'GET, POST, DELETE, PUT');
   res.set('Access-Control-Allow-Headers', 'X-Requested-With, Content-Type, Authorization');
