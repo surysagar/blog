@@ -3,12 +3,12 @@ var app = express();
 var jwt = require('express-jwt');
 var bodyParser = require('body-parser'); //bodyparser + json + urlencoder
 var morgan  = require('morgan'); // logger
-var tokenManager = require('./config/token_manager');
+// var tokenManager = require('./config/token_manager');
 var secret = require('./config/secret');
 var path = require('path');
 var cors = require('cors');
 var redis = require('redis');
-var client = redis.createClient();
+//var client = redis.createClient();
 
 // client.on('connect', function() {
 //	console.log('connected to redis');
@@ -33,7 +33,7 @@ routes.rss = require('./route/rss.js');
 
 
 app.all('*', function(req, res, next) {
-  res.set('Access-Control-Allow-Origin', 'http://ec2-18-222-72-106.us-east-2.compute.amazonaws.com');
+  res.set('Access-Control-Allow-Origin', 'localhost:3000');
   res.set('Access-Control-Allow-Credentials', true);
   res.set('Access-Control-Allow-Methods', 'GET, POST, DELETE, PUT');
   res.set('Access-Control-Allow-Headers', 'X-Requested-With, Content-Type, Authorization');
@@ -72,10 +72,10 @@ app.get('/user/logout', jwt({secret: secret.secretToken}), routes.users.logout);
 app.post('/post', routes.posts.create); 
 
 //Edit the post id
-app.put('/post', jwt({secret: secret.secretToken}), tokenManager.verifyToken, routes.posts.update); 
+app.put('/post', jwt({secret: secret.secretToken}), routes.posts.update); 
 
 //Delete the post id
-app.delete('/post/:id', jwt({secret: secret.secretToken}), tokenManager.verifyToken, routes.posts.delete); 
+app.delete('/post/:id', jwt({secret: secret.secretToken}), routes.posts.delete); 
 
 //Serve the rss feed
 app.get('/rss', routes.rss.index);

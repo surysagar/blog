@@ -1,7 +1,7 @@
 var config = {};
 
 config.blogName = 'myBlog';
-config.url = 'http://ec2-18-222-72-106.us-east-2.compute.amazonaws.com:3000/';
+config.url = 'localhost:3000/';
 
 config.rss = {
   title:        'My RSS Feed',
