@@ -31,16 +31,6 @@ routes.posts = require('./api/route/posts.js');
 routes.users = require('./api/route/users.js');
 routes.rss = require('./api/route/rss.js');
 
-
-app.all('*', function(req, res, next) {
-  res.set('Access-Control-Allow-Origin', '*');
-  res.set('Access-Control-Allow-Credentials', true);
-  res.set('Access-Control-Allow-Methods', 'GET, POST, DELETE, PUT');
-  res.set('Access-Control-Allow-Headers', 'X-Requested-With, Content-Type, Authorization');
-  if ('OPTIONS' == req.method) return res.send(200);
-  next();
-});
-
 //Get all published post
 app.get('/post', routes.posts.list);
 
