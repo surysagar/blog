@@ -3,16 +3,9 @@ var app = express();
 var jwt = require('express-jwt');
 var bodyParser = require('body-parser'); //bodyparser + json + urlencoder
 var morgan  = require('morgan'); // logger
-// var tokenManager = require('./config/token_manager');
 var secret = require('./api/config/secret');
 var path = require('path');
 var cors = require('cors');
-//var redis = require('redis');
-//var client = redis.createClient();
-
-// client.on('connect', function() {
-//	console.log('connected to redis');
-//})
 var port = process.env.PORT || 3000;
 app.listen(port);
 
