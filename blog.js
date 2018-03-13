@@ -66,16 +66,16 @@ app.post('/user/register', routes.users.register);
 app.post('/user/signin', routes.users.signin); 
 
 //Logout
-app.get('/user/logout', jwt({secret: secret.secretToken}), routes.users.logout); 
+app.get('/user/logout', routes.users.logout); 
 
 //Create a new post
 app.post('/post', routes.posts.create); 
 
 //Edit the post id
-app.put('/post', jwt({secret: secret.secretToken}), routes.posts.update); 
+app.put('/post', routes.posts.update); 
 
 //Delete the post id
-app.delete('/post/:id', jwt({secret: secret.secretToken}), routes.posts.delete); 
+app.delete('/post/:id', routes.posts.delete); 
 
 //Serve the rss feed
 app.get('/rss', routes.rss.index);
