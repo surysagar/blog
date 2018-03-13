@@ -1,9 +1,6 @@
 var db = require('../config/mongo_database');
 var jwt = require('jsonwebtoken');
 var secret = require('../config/secret');
-var redisClient = require('../config/redis_database').redisClient;
-// var tokenManager = require('../config/token_manager');
-
 exports.signin = function(req, res) {
 	var username = req.body.username || '';
 	var password = req.body.password || '';
