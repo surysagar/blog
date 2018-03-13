@@ -1,7 +1,7 @@
 var mongoose = require('mongoose');
 var bcrypt = require('bcrypt');
 var SALT_WORK_FACTOR = 10;
-var mongodbURL = 'mongodb://<dbuser>:<dbpassword>@ds263408.mlab.com:63408/college-blog';
+var mongodbURL = 'mongodb://sagar:saurabh@ds263408.mlab.com:63408/college-blog';
 var mongodbOptions = { };
 
 mongoose.connect(mongodbURL, mongodbOptions, function (err, res) {
