@@ -4,7 +4,7 @@ var jwt = require('express-jwt');
 var bodyParser = require('body-parser'); //bodyparser + json + urlencoder
 var morgan  = require('morgan'); // logger
 // var tokenManager = require('./config/token_manager');
-var secret = require('.api/config/secret');
+var secret = require('./api/config/secret');
 var path = require('path');
 var cors = require('cors');
 //var redis = require('redis');
@@ -27,9 +27,9 @@ app.disable('etag');
 //Routes
 var routes = {};
 
-routes.posts = require('.api/route/posts.js');
-routes.users = require('.api/route/users.js');
-routes.rss = require('.api/route/rss.js');
+routes.posts = require('./api/route/posts.js');
+routes.users = require('./api/route/users.js');
+routes.rss = require('./api/route/rss.js');
 
 
 app.all('*', function(req, res, next) {
